@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>SimpleFramework</title>
+    <style type="text/css" media="screen">
+      body = {
+        background-color: #4B7399;
+        font-family: Verdana;
+        font-size: 14 px;
+      }
+      #container {
+        width: 75%;
+        margin: 0 auto;
+        background-color: blue;
+        padding: 20px 40px;
+        border: solid 1px black;
+        margin-top: 20px;
+      }
+      a { color: #0000FF; }
+    </style>
+  </head>
+  <body>
+    <div id="container">
+      <h1 style="color:blue;">A Blue Heading</h1>
+      <h1> Your number is <%= your_number %> </h1>
+      <h1> Please click the button take another try </h1>
+      <% if SimpleFramework.attempts > 0 %>
+        <form method="post" action="/set_num">
+          <input type="submit" value="Next attempt">
+        </form>
+      <% elsif SimpleFramework.attempts == 0 %>
+        <form method="post" action="/">
+          <input type="submit" value="Finish">
+        </form>
+      <% end %>
+      <h1> <%= SimpleFramework.check(your_number, current_attempts) %> </h1>
+    </div>
+  </body>
+</html>

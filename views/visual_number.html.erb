@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>SimpleFramework</title>
+    <style type="text/css" media="screen">
+      a { color: #0000FF; }
+      .flex-parent-element {
+        margin: 0 auto;
+        background-color: blue;
+        padding: 20px 40px;
+        border: solid 1px black;
+        margin-top: 20px;
+        display: flex;
+        width: 100%;
+      }
+
+      .flex-child-element {
+        flex: 1
+      }
+
+      .flex-child-element:first-child {
+        margin-right: 20px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="flex-parent-element">
+      <div class="flex-child-element">
+        <% if SimpleFramework.warehouse["masks"].find{|mask| mask == '++++'} %>
+          <h1> Congrats! You won the game! </h1>
+          <form method="post" action="/">
+            <input type="submit" value="Start a new game">
+          </form>
+        <% else %>
+          <h1> You have <%= SimpleFramework.attempts %> attempts to win the game </h1>
+          <% if SimpleFramework.attempts > 0 %>
+            <% if @right_number == false %>
+              <h1> Please double check your number </h1>
+            <% else %>
+              <h1> Please enter your number </h1>
+            <% end %>
+            <form method="post" action="/get_num">
+              <input name="number" type="text">
+              <input type="submit" value="Enter Number">
+            </form>
+          <% end %>
+          <% if SimpleFramework.attempts == 0 %>
+            <h1> You lost the game </h1>
+            <form method="post" action="/">
+              <input type="submit" value="Start a new game">
+            </form>
+          <% end %>
+        <% end %>
+      </div>
+      <div class="flex-child-element">
+        <table class='centered bordered '>
+          <thead>
+            <tr>
+              <th>
+                <h2>Attempt</h2>
+              </th>
+              <th>
+                <h2>Number</h2>
+              </th>
+              <th>
+                <h2>Result</h2>
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            <% unless  SimpleFramework.warehouse["numbers"].empty?%>
+              <% SimpleFramework.warehouse["numbers"].each_with_index do |key, index|%>
+                <tr>
+                  <td><%=index+1%></td>
+                  <td><%=key%></td>
+                  <td><%=SimpleFramework.warehouse["masks"][index]%></td>
+                </tr>
+              <% end %>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </body>
+</html>
