@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>SimpleFramework</title>
+    <style type="text/css" media="screen">
+      body = {
+        background-color: #4B7399;
+        font-family: Verdana;
+        font-size: 14 px;
+      }
+      #container {
+        width: 75%;
+        margin: 0 auto;
+        background-color: blue;
+        padding: 20px 40px;
+        border: solid 1px black;
+        margin-top: 20px;
+      }
+      a { color: #0000FF; }
+    </style>
+  </head>
+  <body>
+    <div id="container">
+      <h1 style="color:blue;">A Blue Heading</h1>
+      <h1> Please choose the number of your attempts </h1>
+      <form method="post" action="/get_att">
+        <input name="attempts" type="text">
+        <input type="submit" value="Enter Attempts">
+      </form>
+    </div>
+  </body>
+</html>
